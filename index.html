@@ -17,13 +17,16 @@ h2{font-family:'Cormorant Garamond',serif;font-size:2.3rem;text-align:center;col
 .letter{background:#fff;border-radius:18px;padding:34px 28px;box-shadow:0 6px 24px rgba(90,61,43,.08);border-top:4px solid var(--gold)}
 .letter strong{color:#7a4e2c}.sig{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.3rem;text-align:center;margin-top:24px}
 .note{text-align:center;margin:-10px 0 26px;color:#7a6a5c}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px}
+.grid{display:grid;gap:20px;grid-template-columns:1fr;align-items:stretch}
+@media(min-width:700px){.grid{grid-template-columns:1fr 1fr}}
+@media(min-width:980px){.grid{grid-template-columns:1fr 1fr 1fr}}
 .card{background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 6px 24px rgba(90,61,43,.1);display:flex;flex-direction:column}
 .card header{background:var(--c);color:#fff;padding:14px 20px;font-weight:700;font-size:1.2rem}
 .card .body{padding:18px 20px;flex:1;display:flex;flex-direction:column;gap:6px}
 .lbl{font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:#9a8a7c}
 .num{font-size:1.25rem;font-weight:700;letter-spacing:.04em}
-.card img{width:100%;margin:10px auto 0;display:block;border-radius:10px;background:#fff}
+.qrbox{width:200px;height:200px;margin:auto auto 0;position:relative;overflow:hidden;flex:0 0 auto;background:#fff}
+.qrbox img{position:absolute;left:0;top:0;width:200px;height:200px;max-width:none;transform-origin:0 0;transform:translate(calc(var(--tx)*1px),calc(var(--ty)*1px)) scale(var(--s))}
 .row{display:flex;gap:8px;margin-top:12px}
 .row button,.row a{flex:1;text-align:center;border:1.5px solid var(--c);color:var(--c);background:#fff;border-radius:10px;padding:9px;font:700 .9rem Lato;cursor:pointer;text-decoration:none}
 .row button{background:var(--c);color:#fff}
@@ -44,7 +47,7 @@ footer{text-align:center;padding:30px;color:#9a8a7c;font-size:.9rem}
 <section id="give"><h2>Ways to Give</h2><p class="note">All QR codes work with InstaPay — scan from any bank or e-wallet app.</p><div class="grid" id="grid"></div></section>
 <footer>With gratitude · Hanah Nicole G. Poliquit</footer>
 <script>
-const A=[["PNB","#0a3a7a","HANAH G POLIQUIT","1282 1040 0787","pnb"],["BPI","#b11116","HANAH NICOLE GONZALES POLIQUIT","41697 71936","bpi"],["MariBank","#f26722","HANAH NICOLE POLIQUIT","1531 9570 635","maribank"],["GoTyme","#00a5a8","HANAH NICOLE G POLIQUIT","0187 4695 3344","gotyme"],["GCash","#007dfe","Hanah Nicole Poliquit","09935183386","gcash"]];
-grid.innerHTML=A.map(([n,c,nm,no,f])=>`<div class="card" style="--c:${c}"><header>${n}</header><div class="body"><span class="lbl">Account Name</span><div>${nm}</div><span class="lbl">Account Number</span><div class="num">${no}</div><img src="qr/${f}.png?v=4" alt="${n} InstaPay QR code" onerror="this.remove();document.getElementById('d-${f}').remove()"><div class="row"><button onclick="cp(this,'${no.replace(/ /g,'')}')">Copy Number</button><a id="d-${f}" href="qr/${f}.png?v=4" download="${n}-QR.png">Download QR</a></div></div></div>`).join('');
+const A=[["PNB","#0a3a7a","HANAH G POLIQUIT","1282 1040 0787","pnb",1.2924,-29.23,-30.23],["BPI","#b11116","HANAH NICOLE GONZALES POLIQUIT","41697 71936","bpi",1.0147,-1.83,-0.37],["MariBank","#f26722","HANAH NICOLE POLIQUIT","1531 9570 635","maribank",1.0160,-1.29,-0.69],["GoTyme","#00a5a8","HANAH NICOLE G POLIQUIT","0187 4695 3344","gotyme",0.9907,1.17,1.17],["GCash","#007dfe","Hanah Nicole Poliquit","09935183386","gcash",1.5066,-33.60,-32.96]];
+grid.innerHTML=A.map(([n,c,nm,no,f,s,tx,ty])=>`<div class="card" style="--c:${c}"><header>${n}</header><div class="body"><span class="lbl">Account Name</span><div>${nm}</div><span class="lbl">Account Number</span><div class="num">${no}</div><div class="qrbox"><img style="--s:${s};--tx:${tx};--ty:${ty}" src="qr/${f}.png?v=5" alt="${n} InstaPay QR code"></div><div class="row"><button onclick="cp(this,'${no.replace(/ /g,'')}')">Copy Number</button><a id="d-${f}" href="qr/${f}.png?v=5" download="${n}-QR.png">Download QR</a></div></div></div>`).join('');
 function cp(b,t){navigator.clipboard.writeText(t).then(()=>{b.textContent='Copied ✓';setTimeout(()=>b.textContent='Copy Number',1500)})}
 </script></body></html>
