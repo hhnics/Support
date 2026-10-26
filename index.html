@@ -23,7 +23,7 @@ h2{font-family:'Cormorant Garamond',serif;font-size:2.3rem;text-align:center;col
 .card .body{padding:18px 20px;flex:1;display:flex;flex-direction:column;gap:6px}
 .lbl{font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:#9a8a7c}
 .num{font-size:1.25rem;font-weight:700;letter-spacing:.04em}
-.card img{width:100%;max-width:220px;margin:10px auto 0;display:block;border-radius:10px}
+.card img{width:100%;margin:10px auto 0;display:block;border-radius:10px;background:#fff}
 .row{display:flex;gap:8px;margin-top:12px}
 .row button,.row a{flex:1;text-align:center;border:1.5px solid var(--c);color:var(--c);background:#fff;border-radius:10px;padding:9px;font:700 .9rem Lato;cursor:pointer;text-decoration:none}
 .row button{background:var(--c);color:#fff}
@@ -41,10 +41,10 @@ footer{text-align:center;padding:30px;color:#9a8a7c;font-size:.9rem}
 <p>If the Lord leads you to give, I would also be grateful for financial support toward a <strong>₱3,000 goal</strong>: <strong>₱2,000</strong> for the conference registration fee, which covers accommodation, meals, and training materials, and <strong>₱1,000</strong> for transportation and other necessary conference expenses.</p>
 <p>Thank you for partnering with me through prayer, encouragement, and support. May God bless you!</p>
 <p class="sig">“Here am I; send me.”<br>Isaiah 6:8 (KJV)</p></div></section>
-<section id="give"><h2>Ways to Give</h2><p class="note">Scan a code to see the account name and number, then send from your bank or e-wallet.</p><div class="grid" id="grid"></div></section>
+<section id="give"><h2>Ways to Give</h2><p class="note">All QR codes work with InstaPay — scan from any bank or e-wallet app.</p><div class="grid" id="grid"></div></section>
 <footer>With gratitude · Hanah Nicole G. Poliquit</footer>
 <script>
-const A=[["PNB","#0a3a7a","HANAH G POLIQUIT","1282 1040 0787","pnb"],["BPI","#b11116","HANAH NICOLE GONZALES POLIQUIT","41697 71936","bpi"],["MariBank","#f26722","HANAH NICOLE POLIQUIT","5294 1629 2643 5563","maribank"],["GoTyme","#00a5a8","HANAH NICOLE G POLIQUIT","4240 3204 2084 0211","gotyme"],["GCash","#007dfe","Hanah Nicole Poliquit","09935183386","gcash"]];
+const A=[["PNB","#0a3a7a","HANAH G POLIQUIT","1282 1040 0787","pnb"],["BPI","#b11116","HANAH NICOLE GONZALES POLIQUIT","41697 71936","bpi"],["MariBank","#f26722","HANAH NICOLE POLIQUIT","1531 9570 635","maribank"],["GoTyme","#00a5a8","HANAH NICOLE G POLIQUIT","0187 4695 3344","gotyme"],["GCash","#007dfe","Hanah Nicole Poliquit","09935183386","gcash"]];
 grid.innerHTML=A.map(([n,c,nm,no,f])=>`<div class="card" style="--c:${c}"><header>${n}</header><div class="body"><span class="lbl">Account Name</span><div>${nm}</div><span class="lbl">Account Number</span><div class="num">${no}</div><img src="qr/${f}.png" alt="${n} QR code" onerror="this.remove();document.getElementById('d-${f}').remove()"><div class="row"><button onclick="cp(this,'${no.replace(/ /g,'')}')">Copy Number</button><a id="d-${f}" href="qr/${f}.png" download="${n}-QR.png">Download QR</a></div></div></div>`).join('');
 function cp(b,t){navigator.clipboard.writeText(t).then(()=>{b.textContent='Copied ✓';setTimeout(()=>b.textContent='Copy Number',1500)})}
 </script></body></html>
