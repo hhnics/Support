@@ -18,7 +18,11 @@ section{max-width:860px;margin:auto;padding:50px 20px}
 .purpose-wrap{display:grid;grid-template-columns:1fr;gap:18px;align-items:start}
 .posters{display:flex;flex-direction:column;gap:16px}
 .poster{width:100%;height:auto;display:block;border-radius:18px;box-shadow:0 8px 28px rgba(90,61,43,.12)}
-@media(min-width:860px){.purpose-wrap{grid-template-columns:minmax(0,1.25fr) minmax(260px,.75fr);gap:28px}}
+@media(min-width:860px){
+.purpose-wrap{grid-template-columns:minmax(0,1.45fr) minmax(230px,340px);gap:28px;align-items:stretch}
+.posters{height:0;min-height:100%;display:grid;grid-template-rows:.6644fr 1fr 1fr;gap:14px;overflow:hidden}
+.poster{width:100%;height:100%;object-fit:contain;object-position:center}
+}
 h2{font-family:'Cormorant Garamond',serif;font-size:2.3rem;text-align:center;color:#5a3d2b;margin:0 0 24px}
 .letter{background:#fff;border-radius:18px;padding:34px 28px;box-shadow:0 6px 24px rgba(90,61,43,.08);border-top:4px solid var(--gold)}
 .letter strong{color:#7a4e2c}.sig{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.3rem;text-align:center;margin-top:24px}
@@ -51,7 +55,7 @@ footer{text-align:center;padding:30px;color:#9a8a7c;font-size:.9rem}
 <p>Thank you for partnering with me through prayer, encouragement, and support. May God bless you!</p>
 <p class="sig">“Here am I; send me.”<br>Isaiah 6:8 (KJV)</p>
 <p class="sig">“But lay up for yourselves treasures in heaven, where neither moth nor rust doth corrupt, and where thieves do not break through nor steal: For where your treasure is, there will your heart be also.”<br>—Matthew 6:20–21 (KJV)</p></div><div class="posters"><img class="poster" src="ltc-poster.jpg" alt="Cru Leadership Training Conference poster: KOMYUNITI, November 16–18, 2026"><img class="poster" src="ltc-where.jpg" alt="Conference location: Cru Center for Evangelism and Discipleship, Hop Inn Hotel Tomas Morato"><img class="poster" src="ltc-fee.jpg" alt="Registration fee: Php 2,000, inclusive of food, lodging, and conference essentials"></div></div></section>
-<section id="give"><h2>Ways to Give</h2><p class="note">All QR codes work with InstaPay — scan from any bank or e-wallet app.</p><div class="grid" id="grid"></div></section>
+<section id="give"><h2>Ways to Give</h2><p class="note">Prayers are enough, but if you are willing to share and give, these are the accounts you can send to.</p><div class="grid" id="grid"></div></section>
 <footer>With gratitude · Hanah Nicole G. Poliquit</footer>
 <script>
 const A=[["PNB","#0a3a7a","HANAH G POLIQUIT","1282 1040 0787","pnb",1.2924,-29.23,-30.23],["BPI","#b11116","HANAH NICOLE GONZALES POLIQUIT","41697 71936","bpi",1.0147,-1.83,-0.37],["MariBank","#f26722","HANAH NICOLE POLIQUIT","1531 9570 635","maribank",1.0160,-1.29,-0.69],["GoTyme","#00a5a8","HANAH NICOLE G POLIQUIT","0187 4695 3344","gotyme",0.9907,1.17,1.17],["GCash","#007dfe","Hanah Nicole Poliquit","09935183386","gcash",1.5066,-33.60,-32.96]];
