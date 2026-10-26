@@ -19,9 +19,9 @@ section{max-width:860px;margin:auto;padding:50px 20px}
 .posters{display:flex;flex-direction:column;gap:16px}
 .poster{width:100%;height:auto;display:block;border-radius:18px;box-shadow:0 8px 28px rgba(90,61,43,.12)}
 @media(min-width:860px){
-.purpose-wrap{grid-template-columns:minmax(0,1.45fr) minmax(230px,340px);gap:28px;align-items:stretch}
-.posters{height:0;min-height:100%;display:grid;grid-template-rows:.6644fr 1fr 1fr;gap:14px;overflow:hidden}
-.poster{width:100%;height:100%;object-fit:contain;object-position:center}
+.purpose-wrap{grid-template-columns:minmax(0,1fr) minmax(220px,38%);gap:28px;align-items:start}
+.posters{display:flex;flex-direction:column;gap:14px}
+.poster{width:100%;height:auto;object-fit:fill}
 }
 h2{font-family:'Cormorant Garamond',serif;font-size:2.3rem;text-align:center;color:#5a3d2b;margin:0 0 24px}
 .letter{background:#fff;border-radius:18px;padding:34px 28px;box-shadow:0 6px 24px rgba(90,61,43,.08);border-top:4px solid var(--gold)}
@@ -61,4 +61,28 @@ footer{text-align:center;padding:30px;color:#9a8a7c;font-size:.9rem}
 const A=[["PNB","#0a3a7a","HANAH G POLIQUIT","1282 1040 0787","pnb",1.2924,-29.23,-30.23],["BPI","#b11116","HANAH NICOLE GONZALES POLIQUIT","41697 71936","bpi",1.0147,-1.83,-0.37],["MariBank","#f26722","HANAH NICOLE POLIQUIT","1531 9570 635","maribank",1.0160,-1.29,-0.69],["GoTyme","#00a5a8","HANAH NICOLE G POLIQUIT","0187 4695 3344","gotyme",0.9907,1.17,1.17],["GCash","#007dfe","Hanah Nicole Poliquit","09935183386","gcash",1.5066,-33.60,-32.96]];
 grid.innerHTML=A.map(([n,c,nm,no,f,s,tx,ty])=>`<div class="card" style="--c:${c}"><header>${n}</header><div class="body"><span class="lbl">Account Name</span><div>${nm}</div><span class="lbl">Account Number</span><div class="num">${no}</div><div class="qrbox"><img style="--s:${s};--tx:${tx};--ty:${ty}" src="qr/${f}.png?v=5" alt="${n} InstaPay QR code"></div><div class="row"><button onclick="cp(this,'${no.replace(/ /g,'')}')">Copy Number</button><a id="d-${f}" href="qr/${f}.png?v=5" download="${n}-QR.png">Download QR</a></div></div></div>`).join('');
 function cp(b,t){navigator.clipboard.writeText(t).then(()=>{b.textContent='Copied ✓';setTimeout(()=>b.textContent='Copy Number',1500)})}
+function fitPosters(){
+  const wrap=document.querySelector('.purpose-wrap'),letter=document.querySelector('.letter'),box=document.querySelector('.posters');
+  const imgs=[...box.querySelectorAll('.poster')];
+  wrap.style.gridTemplateColumns='';box.style.height='';box.style.gap='';
+  imgs.forEach(i=>{i.style.height='';i.style.flex='';});
+  if(!matchMedia('(min-width:860px)').matches||imgs.some(i=>!i.naturalWidth))return;
+  const ratios=imgs.map(i=>i.naturalHeight/i.naturalWidth),sum=ratios.reduce((a,b)=>a+b,0),gap0=14,total=wrap.clientWidth;
+  let lo=200,hi=Math.min(480,total*.48);
+  for(let n=0;n<18;n++){
+    const W=(lo+hi)/2;
+    wrap.style.gridTemplateColumns=`minmax(0,1fr) ${W}px`;
+    const stack=W*sum+gap0*(imgs.length-1);
+    if(stack>letter.getBoundingClientRect().height)hi=W;else lo=W;
+  }
+  const W=lo;
+  wrap.style.gridTemplateColumns=`minmax(0,1fr) ${W}px`;
+  const H=letter.getBoundingClientRect().height,heights=ratios.map(r=>W*r);
+  const g=Math.max(8,(H-heights.reduce((a,b)=>a+b,0))/(imgs.length-1));
+  box.style.height=H+'px';box.style.gap=g+'px';
+  imgs.forEach((img,i)=>{img.style.height=heights[i]+'px';img.style.flex='0 0 auto';});
+}
+addEventListener('resize',fitPosters);
+document.querySelectorAll('.poster').forEach(i=>i.complete?fitPosters():i.addEventListener('load',fitPosters));
+document.fonts&&document.fonts.ready.then(fitPosters);
 </script></body></html>
