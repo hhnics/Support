@@ -10,7 +10,7 @@ h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2.6rem,8vw,4.4rem);mar
 .verse{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.35rem;margin:0 0 28px}
 .goal{display:inline-block;background:rgba(255,248,236,.14);border:1px solid rgba(255,248,236,.5);border-radius:16px;padding:16px 30px}
 .goal b{display:block;font-size:2.2rem;font-family:'Cormorant Garamond',serif}
-.goal span{font-size:.85rem;letter-spacing:.12em;text-transform:uppercase}.goal .split{display:block;letter-spacing:.08em;line-height:1.45}.goal b+.split{margin-top:8px}
+.goal span{font-size:.85rem;letter-spacing:.12em;text-transform:uppercase}
 .btn-hero{display:block;width:max-content;margin:26px auto 0;color:#4a3426;background:#fff8ec;padding:12px 26px;border-radius:30px;text-decoration:none;font-weight:700}
 section{max-width:860px;margin:auto;padding:50px 20px}
 h2{font-family:'Cormorant Garamond',serif;font-size:2.3rem;text-align:center;color:#5a3d2b;margin:0 0 24px}
@@ -31,20 +31,20 @@ footer{text-align:center;padding:30px;color:#9a8a7c;font-size:.9rem}
 </style></head><body>
 <div class="hero"><div class="cross">✝</div><h1>Giving for Christ</h1>
 <p class="verse">“Here am I; send me.” — Isaiah 6:8 (KJV)</p>
-<div class="goal"><span>Support Goal</span><b>₱3,000</b><span class="split">₱2,000 conference</span><span class="split">₱1,000 transpo and other fees</span></div>
+<div class="goal"><span>Registration Goal</span><b>₱2,000</b><span>Cru Leadership Training Conference</span></div>
 <a class="btn-hero" href="#give">Ways to Give ↓</a></div>
 <section><h2>A Letter from Hanah</h2><div class="letter">
 <p>Greetings in the sweet and gracious name of our Lord Jesus Christ!</p>
 <p>I am <strong>Hanah Nicole G. Poliquit</strong>, a second-year college student pursuing a <strong>Bachelor of Science in Computer Science at the Polytechnic University of the Philippines</strong>. Growing up as a pastor’s kid, I was introduced to faith and ministry at a young age. As I continue to grow in my personal relationship with the Lord, I am learning to serve Him with a willing heart and a desire to share His love with others.</p>
 <p>With this desire, I am grateful to be <strong>one of the delegates to Cru’s Leadership Training Conference (LTC)</strong>. Through this training, I hope to deepen my walk with God and become better equipped to share the gospel, disciple others, and serve in our campus ministry. As a student, I desire to help fellow students know Jesus and grow in their faith.</p>
 <p>Above all, I humbly ask for your <strong>prayers</strong> as I prepare for this training. Please pray that I may have a humble and teachable heart, grow closer to the Lord, and faithfully apply what I learn in serving Him and others.</p>
-<p>If the Lord leads you to give, I would also be grateful for financial support toward a <strong>₱3,000 goal</strong>: <strong>₱2,000</strong> for the conference registration fee, which covers accommodation, meals, and training materials, and <strong>₱1,000</strong> for transportation and other necessary conference expenses.</p>
+<p>If the Lord leads you to give, I would also be grateful for financial support toward my <strong>₱2,000 registration fee</strong>, which covers accommodation, meals, and training materials.</p>
 <p>Thank you for partnering with me through prayer, encouragement, and support. May God bless you!</p>
 <p class="sig">“Here am I; send me.”<br>Isaiah 6:8 (KJV)</p></div></section>
 <section id="give"><h2>Ways to Give</h2><p class="note">All QR codes work with InstaPay — scan from any bank or e-wallet app.</p><div class="grid" id="grid"></div></section>
 <footer>With gratitude · Hanah Nicole G. Poliquit</footer>
 <script>
 const A=[["PNB","#0a3a7a","HANAH G POLIQUIT","1282 1040 0787","pnb"],["BPI","#b11116","HANAH NICOLE GONZALES POLIQUIT","41697 71936","bpi"],["MariBank","#f26722","HANAH NICOLE POLIQUIT","1531 9570 635","maribank"],["GoTyme","#00a5a8","HANAH NICOLE G POLIQUIT","0187 4695 3344","gotyme"],["GCash","#007dfe","Hanah Nicole Poliquit","09935183386","gcash"]];
-grid.innerHTML=A.map(([n,c,nm,no,f])=>`<div class="card" style="--c:${c}"><header>${n}</header><div class="body"><span class="lbl">Account Name</span><div>${nm}</div><span class="lbl">Account Number</span><div class="num">${no}</div><img src="qr/${f}.png" alt="${n} QR code" onerror="this.remove();document.getElementById('d-${f}').remove()"><div class="row"><button onclick="cp(this,'${no.replace(/ /g,'')}')">Copy Number</button><a id="d-${f}" href="qr/${f}.png" download="${n}-QR.png">Download QR</a></div></div></div>`).join('');
+grid.innerHTML=A.map(([n,c,nm,no,f])=>`<div class="card" style="--c:${c}"><header>${n}</header><div class="body"><span class="lbl">Account Name</span><div>${nm}</div><span class="lbl">Account Number</span><div class="num">${no}</div><img src="qr/${f}.png?v=4" alt="${n} InstaPay QR code" onerror="this.remove();document.getElementById('d-${f}').remove()"><div class="row"><button onclick="cp(this,'${no.replace(/ /g,'')}')">Copy Number</button><a id="d-${f}" href="qr/${f}.png?v=4" download="${n}-QR.png">Download QR</a></div></div></div>`).join('');
 function cp(b,t){navigator.clipboard.writeText(t).then(()=>{b.textContent='Copied ✓';setTimeout(()=>b.textContent='Copy Number',1500)})}
 </script></body></html>
